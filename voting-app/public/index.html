@@ -1,0 +1,74 @@
+<!-- public/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Voting App</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>Cast Your Vote</h1>
+  <form method="POST" action="/vote">
+    <input type="text" name="username" placeholder="Enter your name" required />
+    <select name="candidate" required>
+      <option value="">--Select Candidate--</option>
+      <option value="Alice">Alice</option>
+      <option value="Bob">Bob</option>
+      <option value="Charlie">Charlie</option>
+    </select>
+    <button type="submit">Vote</button>
+  </form>
+
+  <h2>Live Results</h2>
+  <ul id="results"></ul>
+
+  <script>
+    const socket = io();
+
+    function updateResults(data) {
+      const list = document.getElementById('results');
+      list.innerHTML = '';
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = `${item._id}: ${item.count} votes`;
+        list.appendChild(li);
+      });
+    }
+
+    // Fetch initial results
+    fetch('/results')
+      .then(res => res.json())
+      .then(data => updateResults(data));
+
+    // Listen for real-time updates
+    socket.on('voteUpdate', (data) => {
+      updateResults(data);
+    });
+  </script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vote</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Cast Your Vote</h1>
+  <form method="POST" action="/submit-vote">
+    <input type="text" name="name" placeholder="Full Name" required />
+    <input type="text" name="aadhaar" placeholder="Aadhaar ID" required />
+    <input type="text" name="phone" placeholder="Phone Number" required />
+    <input type="number" name="age" placeholder="Age" required />
+    <input type="text" name="voterId" placeholder="Voter ID" required />
+
+    <select name="candidate" required>
+      <option value="Candidate A">Candidate A</option>
+      <option value="Candidate B">Candidate B</option>
+      <option value="Candidate C">Candidate C</option>
+    </select>
+    
+    <button type="submit">Vote</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting Results</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Live Voting Results</h1>
+  <ul id="results"></ul>
+
+  <script>
+    const socket = io();
+
+    function updateResults(data) {
+      const list = document.getElementById('results');
+      list.innerHTML = '';
+      data.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = `${item._id}: ${item.count} votes`;
+        list.appendChild(li);
+      });
+    }
+
+    fetch('/get-results')
+      .then(res => res.json())
+      .then(data => updateResults(data));
+
+    socket.on('voteUpdate', (data) => updateResults(data));
+  </script>
+</body>
+</html>
