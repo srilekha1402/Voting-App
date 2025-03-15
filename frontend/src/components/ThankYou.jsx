@@ -5,11 +5,10 @@ import './ThankYou.css';
 const ThankYou = () => {
   return (
     <div className="thankyou-container">
-      <div className="thankyou-box">
-        <h1>🎉 Thank you for voting!</h1>
-        <p>Your vote has been successfully recorded.</p>
-        <Link to="/results" className="results-link">View Voting Results</Link>
-      </div>
+      <h1>Thank You for Voting!</h1>
+      <p>Your vote has been recorded successfully.</p>
+      <Link to="/results"><button>View Results</button></Link>
+      <Link to="/"><button>Go to Home</button></Link>
     </div>
   );
 };

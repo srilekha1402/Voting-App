@@ -32,7 +32,8 @@ const VoteForm = () => {
 
       if (response.ok) {
         // Redirect to thank you page served by backend
-        window.location.href = '/thankyou.html';
+        // window.location.href = '/thankyou.html';
+        window.location.href = '/thankyou';
       } else {
         const errorText = await response.text();
         alert(errorText);

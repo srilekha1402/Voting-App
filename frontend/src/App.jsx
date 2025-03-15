@@ -12,6 +12,7 @@ const App = () => {
       <Route path="/vote" element={<VoteForm />} />
       <Route path="/results" element={<Results />} />
       <Route path="/thankyou" element={<ThankYou />} />
+      
     </Routes>
   );
 };
